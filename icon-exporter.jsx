@@ -15,11 +15,67 @@ Array.prototype.map = function (callback) {
   }
   return obj;
 };
+//Illustrator's interpreter is not support indexOf function. what??? why????
+Array.prototype.indexOf = Array.prototype.indexOf || function(value, start) {
+  for (var i = 0, length = this.length; i < length; i++) {
+    if (this[i] == value) {
+      return i;
+    }
+  }
+  return -1;
+}
 
 if (app.documents.length > 0) {
     main();
 }
 else alert('Cancelled by user');
+
+/*
+    parser
+*/
+function parseFromIcon(icon){
+    var ALLOWED_IDIOMS = ['iphone','ipad'];
+    var filenameStr = icon.split("@");
+    var iconName = filenameStr[0].split("-");
+
+    if(iconName.length!=2){
+        console.log("Invalid format", icon);
+        return null;
+    }
+
+    var scale = filenameStr.length == 2 ? filenameStr[1] : '1x';
+    var scaleInt = parseInt(scale.replace('x',''));
+    var size = iconName[1];
+
+    return {
+        "idiom": ALLOWED_IDIOMS.indexOf(iconName[0])>-1 ? iconName[0] : "universal",
+        "size": size+"x"+size,
+        "sizeInt": parseInt(size) * scaleInt,
+        "filename": icon+".png",
+        "scale": scale,
+        "scaleInt": scaleInt
+    };
+}
+
+function makeContentJs(icons){
+    return {
+        images: icons.map(function(icon){
+            var iconDict = parseFromIcon(icon);
+            var content = {};
+            content["idiom"] = iconDict.idiom;
+            content["filename"] = iconDict.filename;
+            content["scale"] = iconDict.scale;
+            if(iconDict['idiom'] != 'universal'){
+                content["size"] = iconDict.size;
+            }
+            return content;
+        }),
+        info: {
+            version: 1,
+            author: "xcode"
+        }
+    }
+}
 
 function main() {
     var document = app.activeDocument;
@@ -45,47 +101,21 @@ function main() {
         /*
           export image files
         */
-        var icon, file;
-        for(var i = 0; i < ICONS.length; i++)
-        {
-            icon = ICONS[i];
-
-            file = new File(folder.fsName + '/' + icon.name + ".png");
-
-            options.horizontalScale = 100 * (icon.size / document.width);
-            options.verticalScale = 100 * (icon.size / document.height);
+        for(var i = 0; i < ICONS.length; i++){
+            var iconDict = parseFromIcon(ICONS[i]);
+            var file = new File(folder.fsName + '/' + iconDict.filename);
+            options.horizontalScale = 100 * (iconDict.sizeInt / document.width);
+            options.verticalScale = 100 * (iconDict.sizeInt / document.height);
 
             document.exportFile(file,ExportType.PNG24,options);
         }
-
+        
         /*
-          export Contents.json
+            export file
         */
-        var contents = {
-            images: ICONS.map(function(icon){
-                var iconName = icon.name.split("-");
-                var scaleStr = icon.name.split("@");
-                scaleStr = scaleStr.length == 2 ? scaleStr[1] : '1x';
-                var filenameStr = icon.name+".png";
-                return iconName.length == 3 ? {
-                  "idiom": iconName[0],
-                  "size": icon.size+"x"+icon.size,
-                  "filename": filenameStr,
-                  "scale": scaleStr
-                } : {
-                  "idiom" : "universal",
-                  "filename" : filenameStr,
-                  "scale" : scaleStr,
-                }
-            }),
-            info: {
-                version: 1,
-                author: "xcode"
-            }
-        };
         var contentsJson = new File(folder.fsName + "/Contents.json");
         contentsJson.open("w");
-        contentsJson.write(JSON.stringify(contents, null, 2));
+        contentsJson.write(JSON.stringify(makeContentJs(ICONS), null, 2));
         contentsJson.close();
 
         activeAB.artboardRect = abBounds;
