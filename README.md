@@ -15,3 +15,5 @@ AI supports use of external script files (e.g., Java) that can be executed on a 
 The only difference in the Java code between the iOS8 version and the OS X version is the list of icons.
 
 Read the [post](http://champlintechnologiesllc.com/2015/04/26/blog020-ai-scripts-to-export-app-icons/) on [Champlin Technologies LLC](http://champlintechnologiesllc.com) for more info.
+
+ADOBE ILLUSTRATOR CC SCRIPTING GUIDE : http://wwwimages.adobe.com/content/dam/Adobe/en/devnet/pdf/illustrator/scripting/CC/Illustrator%20Scripting%20Guide.pdf
