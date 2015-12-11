@@ -1,9 +1,23 @@
 # Creating iOS and OS icon sets from Adobe Illustrator
 
-Scripts of this repo is improved from original repo https://github.com/CaryChamplin/CreatingIconsFromAI.
-
+All scripts of this repo is improved from original repo https://github.com/CaryChamplin/CreatingIconsFromAI.
 It just generate a completely valid 'AppIcon.appiconset'.
-Output results are as below:
+
+## Usage
+Clone(or download) this repo to 
+```
+/Applications/Adobe Illustrator CC/Presets.localized/en_US/Scripts/ (in my case)
+```
+And click below menus.
+
+```
+File > Scripts > ios-icon-exporter
+File > Scripts > mac-icon-exporter
+```
+
+If you need more information, see this : http://wwwimages.adobe.com/content/dam/Adobe/en/devnet/pdf/illustrator/scripting/CC/Illustrator%20Scripting%20Guide.pdf
+
+## Output results
 
 ### AppIcon.appiconset
 ```
@@ -112,6 +126,3 @@ iphone-60@3x.png
   }
 }
 ```
-
-
-ADOBE ILLUSTRATOR CC SCRIPTING GUIDE : http://wwwimages.adobe.com/content/dam/Adobe/en/devnet/pdf/illustrator/scripting/CC/Illustrator%20Scripting%20Guide.pdf
