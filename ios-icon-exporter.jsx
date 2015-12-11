@@ -11,6 +11,7 @@ ICONS = [
     "ipad-40@2x",
     "ipad-29",
     "ipad-29@2x",
+    "ipad-83.5@2x",
     "iTunesArtwork-512",
     "iTunesArtwork-512@2x"
 ];

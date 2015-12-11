@@ -34,7 +34,7 @@ else alert('Cancelled by user');
     parser
 */
 function parseFromIcon(icon){
-    var ALLOWED_IDIOMS = ['iphone','ipad'];
+    var ALLOWED_IDIOMS = ['iphone','ipad','universal'];
     var filenameStr = icon.split("@");
     var iconName = filenameStr[0].split("-");
 
@@ -44,16 +44,16 @@ function parseFromIcon(icon){
     }
 
     var scale = filenameStr.length == 2 ? filenameStr[1] : '1x';
-    var scaleInt = parseInt(scale.replace('x',''));
+    var scaleFloat = parseFloat(scale.replace('x',''));
     var size = iconName[1];
 
     return {
         "idiom": ALLOWED_IDIOMS.indexOf(iconName[0])>-1 ? iconName[0] : "universal",
         "size": size+"x"+size,
-        "sizeInt": parseInt(size) * scaleInt,
+        "sizeFloat": size * scaleFloat,
         "filename": icon+".png",
         "scale": scale,
-        "scaleInt": scaleInt
+        "scaleFloat": scaleFloat
     };
 }
 
@@ -104,8 +104,8 @@ function main() {
         for(var i = 0; i < ICONS.length; i++){
             var iconDict = parseFromIcon(ICONS[i]);
             var file = new File(folder.fsName + '/' + iconDict.filename);
-            options.horizontalScale = 100 * (iconDict.sizeInt / document.width);
-            options.verticalScale = 100 * (iconDict.sizeInt / document.height);
+            options.horizontalScale = 100 * (iconDict.sizeFloat / document.width);
+            options.verticalScale = 100 * (iconDict.sizeFloat / document.height);
 
             document.exportFile(file,ExportType.PNG24,options);
         }
