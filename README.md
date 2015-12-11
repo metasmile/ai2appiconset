@@ -1,10 +1,13 @@
-# Creating iOS and OS icon sets from Adobe Illustrator
+![logo](https://github.com/metasmile/ai2app/blob/master/logo.png)
+
+
+# Creating AppIcon sets from Adobe Illustrator
 
 All scripts of this repo is improved from original repo https://github.com/CaryChamplin/CreatingIconsFromAI.
 It just generate a completely valid 'AppIcon.appiconset'.
 
 ## Usage
-Clone(or download) this repo to 
+Clone(or download) this repo to
 ```
 /Applications/Adobe Illustrator CC/Presets.localized/en_US/Scripts/ (in my case)
 ```
