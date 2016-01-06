@@ -129,3 +129,34 @@ iphone-60@3x.png
   }
 }
 ```
+
+## Customize export format
+
+```
+{idiom}-{float_PixelSize}@{integer_ScreenScale}x 
+
+-> "iphone-60@2x"
+```
+
+for iOS https://github.com/metasmile/ai2app/blob/master/ios-icon-exporter.jsx
+
+```
+ICONS = [
+    "iphone-60@2x",
+    "iphone-60@3x",
+    "iphone-40@2x",
+    "iphone-40@3x",
+    "iphone-29@2x",
+    "iphone-29@3x",
+    "ipad-76",
+    "ipad-76@2x",
+    "ipad-40",
+    "ipad-40@2x",
+    "ipad-29",
+    "ipad-29@2x",
+    "ipad-83.5@2x",
+    "iTunesArtwork-512",
+    "iTunesArtwork-512@2x"
+];
+#include "icon-exporter.jsx"
+```
