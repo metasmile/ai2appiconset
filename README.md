@@ -3,9 +3,9 @@
 
 # Creating AppIcon sets from Adobe Illustrator
 
-All scripts of this repo is rewrited from original repo https://github.com/CaryChamplin/CreatingIconsFromAI.
+This repo is rewrited from original repo https://github.com/CaryChamplin/CreatingIconsFromAI.
 
-This script just generate a completely valid contents of 'AppIcon.appiconset'.
+Just generates a completely valid contents of 'AppIcon.appiconset'.
 
 ## Usage
 Clone(or download) this repo to
@@ -131,7 +131,7 @@ iphone-60@3x.png
 }
 ```
 
-## Customize export format
+## Format for icon images
 
 ```
 {idiom}-{float_PixelSize}@{integer_ScreenScale}x 
