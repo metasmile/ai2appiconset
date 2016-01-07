@@ -1,5 +1,6 @@
-![logo](https://github.com/metasmile/ai2app/blob/master/logo.png)
+[AD] Elie - Your next mobile photography assistant. http://elie.camera
 
+![logo](https://github.com/metasmile/ai2app/blob/master/logo.png)
 
 # Creating AppIcon sets from Adobe Illustrator
 
