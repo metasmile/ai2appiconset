@@ -1,4 +1,4 @@
-[AD] Elie - Your next mobile photography assistant. http://elie.camera
+[AD] Meet our app using stringsync, Elie - Your next mobile photography assistant. http://elie.camera
 
 ![logo](https://github.com/metasmile/ai2app/blob/master/logo.png)
 
