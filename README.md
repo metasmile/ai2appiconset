@@ -1,6 +1,9 @@
-[AD] Elie - Your next mobile photography assistant. http://elie.camera
+
+[Ad] Meet our app using ai2app, Elie - Your next mobile photography assistant. http://elie.camera
 
 ![logo](https://github.com/metasmile/ai2app/blob/master/logo.png)
+
+[![Awesome](https://cdn.rawgit.com/sindresorhus/awesome/d7305f38d29fed78fa85652e3a63e154dd8e8829/media/badge.svg)](https://github.com/vsouza/awesome-ios#tools)
 
 # Creating AppIcon sets from Adobe Illustrator
 
