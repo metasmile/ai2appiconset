@@ -1,15 +1,16 @@
+PLATFORM = "macos"
 ICONS = [
-  "mac-16",
-  "mac-16@2x",
-  "mac-32",
-  "mac-32@2x",
-  "mac-128",
-  "mac-128@2x",
-  "mac-256",
-  "mac-256@2x",
-  "mac-512",
-  "mac-512@2x",
-  "iTunesArtwork-512",
-  "iTunesArtwork-512@2x"
+  "mac_16",
+  "mac_16@2x",
+  "mac_32",
+  "mac_32@2x",
+  "mac_128",
+  "mac_128@2x",
+  "mac_256",
+  "mac_256@2x",
+  "mac_512",
+  "mac_512@2x",
+  "iTunesArtwork_512",
+  "iTunesArtwork_512@2x"
 ];
 #include "icon-exporter.jsx"

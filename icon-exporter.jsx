@@ -1,5 +1,7 @@
 #target Illustrator
 
+//https://developer.apple.com/library/content/documentation/Xcode/Reference/xcode_ref-Asset_Catalog_Format/ImageSetType.html#//apple_ref/doc/uid/TP40015170-CH25-SW2
+
 /*
   includes
 */
@@ -30,27 +32,39 @@ if (app.documents.length > 0) {
 }
 else alert('Cancelled by user');
 
+
 /*
     parser
 */
 function parseFromIcon(icon){
-    var ALLOWED_IDIOMS = ['iphone','ipad','universal'];
+    var ALLOWED_IDIOMS = ['iphone','ipad','universal','ios-marketing'];
+    var ALLOWED_PLATFORM = ['ios','macos','tvos','watchos'];
     var filenameStr = icon.split("@");
-    var iconName = filenameStr[0].split("-");
+    var iconName = filenameStr[0].split("_");
 
     if(iconName.length!=2){
-        console.log("Invalid format", icon);
+        alert("Invalid icon name. See Readme for more information.", iconName);
         return null;
+    }
+
+    var sizeArr = iconName[1].split("x");
+    if(sizeArr.length>2){
+        alert("Invalid size. See Readme for more information.", sizeArr.join(''));
+        return null;
+    }
+    if(sizeArr.length==1){
+        sizeArr = [sizeArr[0],sizeArr[0]];
     }
 
     var scale = filenameStr.length == 2 ? filenameStr[1] : '1x';
     var scaleFloat = parseFloat(scale.replace('x',''));
-    var size = iconName[1];
+    var idiom = ALLOWED_IDIOMS.indexOf(iconName[0])>-1 ? iconName[0] : "universal";
 
     return {
-        "idiom": ALLOWED_IDIOMS.indexOf(iconName[0])>-1 ? iconName[0] : "universal",
-        "size": size+"x"+size,
-        "sizeFloat": size * scaleFloat,
+        "idiom": idiom,
+        "platform": (idiom=="universal" || idiom=="ios-marketing") && ALLOWED_PLATFORM.indexOf(PLATFORM)>-1 ? PLATFORM : null,
+        "size": sizeArr.join('x'),
+        "scaledSizeArr": [sizeArr[0] * scaleFloat, sizeArr[1] * scaleFloat],
         "filename": icon+".png",
         "scale": scale,
         "scaleFloat": scaleFloat
@@ -65,8 +79,9 @@ function makeContentJs(icons){
             content["idiom"] = iconDict.idiom;
             content["filename"] = iconDict.filename;
             content["scale"] = iconDict.scale;
-            if(iconDict['idiom'] != 'universal'){
-                content["size"] = iconDict.size;
+            content["size"] = iconDict.size;
+            if(iconDict.platform){
+                content["platform"] = iconDict.platform;
             }
             return content;
         }),
@@ -104,12 +119,12 @@ function main() {
         for(var i = 0; i < ICONS.length; i++){
             var iconDict = parseFromIcon(ICONS[i]);
             var file = new File(folder.fsName + '/' + iconDict.filename);
-            options.horizontalScale = 100 * (iconDict.sizeFloat / document.width);
-            options.verticalScale = 100 * (iconDict.sizeFloat / document.height);
+            options.horizontalScale = 100 * (iconDict.scaledSizeArr[0] / document.width);
+            options.verticalScale = 100 * (iconDict.scaledSizeArr[1] / document.height);
 
             document.exportFile(file,ExportType.PNG24,options);
         }
-        
+
         /*
             export file
         */

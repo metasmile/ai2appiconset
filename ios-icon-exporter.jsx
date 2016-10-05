@@ -1,18 +1,19 @@
+PLATFORM = "ios"
 ICONS = [
-    "iphone-60@2x",
-    "iphone-60@3x",
-    "iphone-40@2x",
-    "iphone-40@3x",
-    "iphone-29@2x",
-    "iphone-29@3x",
-    "ipad-76",
-    "ipad-76@2x",
-    "ipad-40",
-    "ipad-40@2x",
-    "ipad-29",
-    "ipad-29@2x",
-    "ipad-83.5@2x",
-    "iTunesArtwork-512",
-    "iTunesArtwork-512@2x"
+    "iphone_60@2x",
+    "iphone_60@3x",
+    "iphone_40@2x",
+    "iphone_40@3x",
+    "iphone_29@2x",
+    "iphone_29@3x",
+    "ipad_76",
+    "ipad_76@2x",
+    "ipad_40",
+    "ipad_40@2x",
+    "ipad_29",
+    "ipad_29@2x",
+    "ipad_83.5@2x",
+    "iTunesArtwork_512",
+    "iTunesArtwork_512@2x"
 ];
 #include "icon-exporter.jsx"
