@@ -105,9 +105,6 @@ function main() {
         var activeAB = document.artboards[activeABidx]; // get active AB
         var abBounds = activeAB.artboardRect;// left, top, right, bottom
 
-        var docBounds = document.visibleBounds;
-        activeAB.artboardRect = docBounds;
-
         var options = new ExportOptionsPNG24();
         options.antiAliasing = true;
         options.transparency = true;
@@ -132,8 +129,6 @@ function main() {
         contentsJson.open("w");
         contentsJson.write(JSON.stringify(makeContentJs(ICONS), null, 2));
         contentsJson.close();
-
-        activeAB.artboardRect = abBounds;
     }
 }
 
