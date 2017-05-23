@@ -12,6 +12,8 @@ ICONS = [
     "ipad_40@2x",
     "ipad_29",
     "ipad_29@2x",
-    "ipad_83.5@2x"
+    "ipad_83.5@2x",
+    "iTunesArtwork_512",
+    "iTunesArtwork_512@2x"
 ];
 #include "icon-exporter.jsx"
