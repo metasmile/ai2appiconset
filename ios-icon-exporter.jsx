@@ -13,6 +13,6 @@ ICONS = [
     "ipad_29",
     "ipad_29@2x",
     "ipad_83.5@2x",
-    "ios-marketing_1024x768@1x"
+    "ios-marketing_1024@1x"
 ];
 #include "icon-exporter.jsx"
