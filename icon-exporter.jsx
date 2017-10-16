@@ -1,6 +1,7 @@
 #target Illustrator
 
 //https://developer.apple.com/library/content/documentation/Xcode/Reference/xcode_ref-Asset_Catalog_Format/ImageSetType.html#//apple_ref/doc/uid/TP40015170-CH25-SW2
+//https://developer.apple.com/library/content/documentation/Xcode/Reference/xcode_ref-Asset_Catalog_Format/AppIconType.html#//apple_ref/doc/uid/TP40015170-CH22-SW1
 
 /*
   includes
@@ -38,6 +39,46 @@ else alert('Cancelled by user');
 */
 function parseFromIcon(icon){
     var ALLOWED_IDIOMS = ['iphone','ipad','universal','ios-marketing'];
+    /*
+    appLauncher
+    An image shown app launcher on watchOS
+    
+    companionSettings
+    An image for the Apple Watch Settings app
+    
+    ios-marketing
+    An image for the App Store icon
+    
+    iphone
+    The image is for iPhone devices.
+    
+    ipad
+    The image is for iPad devices.
+    
+    mac
+    The image is for Mac computers.
+    
+    notificationCenter
+    An image for the notification center on watchOS.
+    
+    quickLook
+    An image used for a long look on watchOS.
+    
+    tv
+    The image is for Apple TV.
+    
+    universal
+    The image works on any device and platform.
+    
+    watch
+    The image is for the Apple Watch devices.
+    
+    watch-marketing
+    An image for the App Store icon.
+    
+    Tag not included
+    Same as specifying universal.
+    */
     var ALLOWED_PLATFORM = ['ios','macos','tvos','watchos'];
     var filenameStr = icon.split("@");
     var iconName = filenameStr[0].split("_");
@@ -58,11 +99,10 @@ function parseFromIcon(icon){
 
     var scale = filenameStr.length == 2 ? filenameStr[1] : '1x';
     var scaleFloat = parseFloat(scale.replace('x',''));
-    var idiom = ALLOWED_IDIOMS.indexOf(iconName[0])>-1 ? iconName[0] : "universal";
-
+    var idiom = ALLOWED_IDIOMS.indexOf(iconName[0])>-1 ? iconName[0] : "universal";    
+    
     return {
         "idiom": idiom,
-        "platform": (idiom=="universal" || idiom=="ios-marketing") && ALLOWED_PLATFORM.indexOf(PLATFORM)>-1 ? PLATFORM : null,
         "size": sizeArr.join('x'),
         "scaledSizeArr": [sizeArr[0] * scaleFloat, sizeArr[1] * scaleFloat],
         "filename": icon+".png",
@@ -75,14 +115,12 @@ function makeContentJs(icons){
     return {
         images: icons.map(function(icon){
             var iconDict = parseFromIcon(icon);
-            var content = {};
-            content["idiom"] = iconDict.idiom;
-            content["filename"] = iconDict.filename;
-            content["scale"] = iconDict.scale;
-            content["size"] = iconDict.size;
-            if(iconDict.platform){
-                content["platform"] = iconDict.platform;
-            }
+            var content = {
+              "idiom": iconDict.idiom,
+              "filename": iconDict.filename,
+              "scale": iconDict.scale,
+              "size": iconDict.size
+            };
             return content;
         }),
         info: {
