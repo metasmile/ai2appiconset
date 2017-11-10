@@ -42,40 +42,40 @@ function parseFromIcon(icon){
     /*
     appLauncher
     An image shown app launcher on watchOS
-    
+
     companionSettings
     An image for the Apple Watch Settings app
-    
+
     ios-marketing
     An image for the App Store icon
-    
+
     iphone
     The image is for iPhone devices.
-    
+
     ipad
     The image is for iPad devices.
-    
+
     mac
     The image is for Mac computers.
-    
+
     notificationCenter
     An image for the notification center on watchOS.
-    
+
     quickLook
     An image used for a long look on watchOS.
-    
+
     tv
     The image is for Apple TV.
-    
+
     universal
     The image works on any device and platform.
-    
+
     watch
     The image is for the Apple Watch devices.
-    
+
     watch-marketing
     An image for the App Store icon.
-    
+
     Tag not included
     Same as specifying universal.
     */
@@ -99,8 +99,8 @@ function parseFromIcon(icon){
 
     var scale = filenameStr.length == 2 ? filenameStr[1] : '1x';
     var scaleFloat = parseFloat(scale.replace('x',''));
-    var idiom = ALLOWED_IDIOMS.indexOf(iconName[0])>-1 ? iconName[0] : "universal";    
-    
+    var idiom = ALLOWED_IDIOMS.indexOf(iconName[0])>-1 ? iconName[0] : "universal";
+
     return {
         "idiom": idiom,
         "size": sizeArr.join('x'),
@@ -145,7 +145,7 @@ function main() {
 
         var options = new ExportOptionsPNG24();
         options.antiAliasing = true;
-        options.transparency = true;
+        options.transparency = false;
         options.artBoardClipping = true;
 
         /*
