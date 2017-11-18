@@ -103,6 +103,7 @@ function parseFromIcon(icon){
 
     return {
         "idiom": idiom,
+        "platform": idiom=="universal" && ALLOWED_PLATFORM.indexOf(PLATFORM)>-1 ? PLATFORM : null,
         "size": sizeArr.join('x'),
         "scaledSizeArr": [sizeArr[0] * scaleFloat, sizeArr[1] * scaleFloat],
         "filename": icon+".png",
@@ -115,12 +116,14 @@ function makeContentJs(icons){
     return {
         images: icons.map(function(icon){
             var iconDict = parseFromIcon(icon);
-            var content = {
-              "idiom": iconDict.idiom,
-              "filename": iconDict.filename,
-              "scale": iconDict.scale,
-              "size": iconDict.size
-            };
+            var content = {};
+            content["idiom"] = iconDict.idiom;
+            content["filename"] = iconDict.filename;
+            content["scale"] = iconDict.scale;
+            content["size"] = iconDict.size;
+            if(iconDict.platform){
+                content["platform"] = iconDict.platform;
+            }
             return content;
         }),
         info: {

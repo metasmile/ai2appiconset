@@ -4,6 +4,7 @@ ICONS = [
     "iphone_29@3x",
     "iphone_60x45@2x",
     "iphone_60x45@3x",
+    "iphone_1024@1x",
     "ipad_29@2x",
     "ipad_67x50@2x",
     "ipad_74x55@2x",
