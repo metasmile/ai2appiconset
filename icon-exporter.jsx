@@ -100,14 +100,14 @@ function parseFromIcon(icon){
     var scale = filenameStr.length == 2 ? filenameStr[1] : '1x';
     var scaleFloat = parseFloat(scale.replace('x',''));
     var idiom = ALLOWED_IDIOMS.indexOf(iconName[0])>-1 ? iconName[0] : "universal";
-    var platform = (idiom=="universal" || idiom=="ios-marketing") && ALLOWED_PLATFORM.indexOf(PLATFORM)>-1 ? PLATFORM : null
+    var platform = (idiom=="universal" /* || idiom=="ios-marketing"*/) && ALLOWED_PLATFORM.indexOf(PLATFORM)>-1 ? PLATFORM : null
 
     return {
         "idiom": idiom,
         "platform": platform,
         "size": sizeArr.join('x'),
         "scaledSizeArr": [sizeArr[0] * scaleFloat, sizeArr[1] * scaleFloat],
-        "filename": icon+".png",
+        "filename": icon ? icon+".png" : null,
         "scale": scale,
         "scaleFloat": scaleFloat
     };
