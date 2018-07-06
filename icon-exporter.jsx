@@ -149,7 +149,7 @@ function main() {
 
         var options = new ExportOptionsPNG24();
         options.antiAliasing = true;
-        options.transparency = false;
+        options.transparency = true;
         options.artBoardClipping = true;
 
         /*
